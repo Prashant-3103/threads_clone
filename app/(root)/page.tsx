@@ -25,10 +25,10 @@ createdAt={post.createdAt}
 comments={post.comments}
    />
   ))}
-
   </>
 )}
 </section>
 </>
   )
 }
+

@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+import { withUt } from "uploadthing/tw";
+
+
 module.exports = {
 
   plugins: [require("tailwindcss-animate")],
@@ -218,3 +221,8 @@ module.exports = {
   // plugins: [require("tailwindcss-animate")],
 };
 
+export default withUt({
+  // Your existing Tailwind config
+  content: ["./src/**/*.{ts,tsx,mdx}"],
+
+})
