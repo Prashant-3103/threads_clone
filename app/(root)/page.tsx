@@ -32,4 +32,3 @@ comments={post.comments}
   )
 }
 
-
