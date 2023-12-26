@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache"
 import User from "../models/user.modal"
 import { connectToDB } from "../mongoose"
+import Thread from "../models/thread.modal"
 interface Params{
     userId: string,
     username: string,
@@ -52,4 +53,24 @@ export async function fetchUser(userId: string){
     } catch (error: any) {
 throw new Error(`Failed to fetch new error: ${error.message}`)
     }
+}
+
+
+export async function fetchUserPosts(userId: string){
+   try {
+    connectToDB()
+    //find all threads by user with userid
+    const threads = await User.findOne({id: userId})
+    .populate({
+        path: 'threads',
+        model: Thread,
+        populate: {
+            path: 'author',
+            select: "name image id"
+        }
+    })
+    return threads
+   } catch (error: any) {
+throw new Error(`failed to fetch user posts ${error.message}`)
+   }
 }
